@@ -96,12 +96,17 @@ export class FranklinFragment extends HTMLElement {
             // eslint-disable-next-line no-await-in-loop
             await cssLoaded;
 
-            const blockScriptUrl = `${origin}/blocks/${blockName}/${blockName}.js`;
-            // eslint-disable-next-line no-await-in-loop
-            const decorateBlock = await import(blockScriptUrl);
-            if (decorateBlock.default) {
+            try {
+              const blockScriptUrl = `${origin}/blocks/${blockName}/${blockName}.js`;
               // eslint-disable-next-line no-await-in-loop
-              await decorateBlock.default(block);
+              const decorateBlock = await import(blockScriptUrl);
+              if (decorateBlock.default) {
+                // eslint-disable-next-line no-await-in-loop
+                await decorateBlock.default(block);
+              }
+            } catch (e) {
+              // eslint-disable-next-line no-console
+              console.log('An error occured while loading the fragment');
             }
           }
           const sections = main.querySelectorAll('.section');
