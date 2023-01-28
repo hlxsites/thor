@@ -2,8 +2,8 @@
 
 main .banner {
     position: relative;
-    padding: 32px;
-    height: 147px;
+    padding: 24px 32px;
+    min-height: 147px;
     box-sizing: border-box;
     border: 1px solid black;
     font-size: var(--body-font-size-xs);
@@ -11,16 +11,20 @@ main .banner {
 
 main .banner h2 {
     font-size: var(--heading-font-size-xs);
-    margin: 0;
+    margin: 2px 0;
 }
 
 main .banner p {
-    margin: 0;
+    margin: 2px 0;
 }
 
 main .banner p.button-container {
     display: inline-block;
     margin-right: 16px;
+}
+
+main .banner a.button {
+    margin: 2px 0;
 }
 
 
