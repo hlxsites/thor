@@ -80,21 +80,30 @@ export class FranklinFragment extends HTMLElement {
           body.classList.add('appear');
 
           // For each block in the fragment load it's js/css
-          blocks.forEach(async (blockName) => {
-            const block = main.querySelector(`.${blockName}`);
+          for (let i = 0; i < blockElements.length; i += 1) {
+            const blockName = blocks[i];
+            const block = blockElements[i];
             const link = document.createElement('link');
             link.setAttribute('rel', 'stylesheet');
             link.setAttribute('href', `${origin}/blocks/${blockName}/${blockName}.css`);
+
+            const cssLoaded = new Promise((resolve) => {
+              link.onload = resolve;
+              link.onerror = resolve;
+            });
+
             body.appendChild(link);
+            // eslint-disable-next-line no-await-in-loop
+            await cssLoaded;
 
             const blockScriptUrl = `${origin}/blocks/${blockName}/${blockName}.js`;
-            await this.importScript(blockScriptUrl);
+            // eslint-disable-next-line no-await-in-loop
             const decorateBlock = await import(blockScriptUrl);
             if (decorateBlock.default) {
+              // eslint-disable-next-line no-await-in-loop
               await decorateBlock.default(block);
             }
-          });
-
+          }
           const sections = main.querySelectorAll('.section');
           sections.forEach((s) => {
             s.dataset.sectionStatus = 'loaded';

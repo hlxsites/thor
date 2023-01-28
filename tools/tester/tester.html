@@ -28,12 +28,17 @@
         </div>
     </main>
     <script>
+        function stageFragment() {
+            stage.innerHTML = `<franklin-fragment url="${input.value}"></franklin-fragment>`;
+        }
+
         const input = document.getElementById('input');
         const stage = document.getElementById('stage');
         input.addEventListener('input', () => {
-
-            stage.innerHTML = `<franklin-fragment url="${input.value}"></franklin-fragment>`;
+            stageFragment();
         });
+
+        stageFragment();
     </script>
   </body>
 </html>
