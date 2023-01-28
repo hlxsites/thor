@@ -7,6 +7,7 @@ main .banner {
     box-sizing: border-box;
     border: 1px solid black;
     font-size: var(--body-font-size-xs);
+    background-color: white;
 }
 
 main .banner h2 {
@@ -29,12 +30,13 @@ main .banner a.button {
 
 main .banner.banner-2-cols .banner-body {
     max-width: 50%;
+    position: relative;
+    z-index: 1;
 }
 
 
 main .banner.banner-2-cols picture {
     position: absolute;
-    z-index: -1;
     top: 0;
     left: 0;
     bottom: 0;

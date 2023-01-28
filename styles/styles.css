@@ -46,7 +46,7 @@
 
 }
 
-main {
+header + main {
   min-height: calc(100vh - var(--nav-height) - var(--footer-height));
 }
 
