@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebComponent - franklin-fragment tester</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <script src="franklin-fragment.js" type="module"></script>
+    <style>
+        main {
+            padding: 32px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 4px 16px;
+            box-sizing: border-box;
+        }
+
+        #stage {
+            margin-top: 32px;
+        }
+    </style>
+  <body>
+    <main>
+        <input value="https://main--thor--hlxsites.hlx.page/admin-console/drafts/uncled/banner1" id="input">
+        <div id="stage">
+
+        </div>
+    </main>
+    <script>
+        const input = document.getElementById('input');
+        const stage = document.getElementById('stage');
+        input.addEventListener('input', () => {
+
+            stage.innerHTML = `<franklin-fragment url="${input.value}"></franklin-fragment>`;
+        });
+    </script>
+  </body>
+</html>
