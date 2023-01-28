@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+ :root, :host {
   /* colors */
   --link-color: #1473e6;
   --link-hover-color: #0d66d0;
