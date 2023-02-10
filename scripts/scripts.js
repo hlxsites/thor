@@ -16,6 +16,14 @@ import {
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
+/**
+ * Are we currently rendering an isolated block?
+ * @returns {boolean} True if rendering block in isolation
+ */
+export function isIsolatedBlockRender() {
+  return window.location.pathname.includes('admin-console');
+}
+
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
@@ -95,8 +103,10 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  if(!isIsolatedBlockRender()) {
+    loadHeader(doc.querySelector('header'));
+    loadFooter(doc.querySelector('footer'));
+  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
